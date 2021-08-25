@@ -1,0 +1,68 @@
+//This is use to make a new database.
+> use njcchallenge
+
+//This is use to insert one data in database, with collection name moviedata.
+> db.moviedata.insertOne({movie_name: "Family Man", actor_name: "Manoj Bajpai", actress_name: "Priyamani", release_data: "2021-06-04", director_name: "Suparn Verma" })
+
+//This is use to show the all DBs 
+> show dbs
+admin         0.000GB
+config        0.000GB
+information   0.000GB
+local         0.000GB
+njcchallenge  0.000GB
+
+//This is used to read the all data in present in collection
+> db.moviedata.find().pretty()
+{
+        "_id" : ObjectId("6126221d7240fb088ea4b028"),
+        "movie_name" : "Family Man",
+        "actor_name" : "Manoj Bajpai",
+        "actress_name" : "Priyamani",
+        "release_data" : "2021-06-04",
+        "director_name" : "Suparn Verma"
+}
+
+//This use to insert more than one data at a time.
+> db.moviedata.insertMany([{movie_name: "Drishyam", actor_name: "Ajay devgan", actress_name: "Tabu", release_data: "2015-08-14", director_name: "Nishikant Kamat" },      {movie_name: "Shershah", actor_name: "Sidhart Malhotra", actress_name: "Kiara Advani", release_data: "2021-08-12", director_name: "Vishnuvardhan"}])
+
+
+//To show data inside the collections
+> db.moviedata.find().pretty()
+{
+        "_id" : ObjectId("6126221d7240fb088ea4b028"),
+        "movie_name" : "Family Man",
+        "actor_name" : "Manoj Bajpai",
+        "actress_name" : "Priyamani",
+        "release_data" : "2021-06-04",
+        "director_name" : "Suparn Verma"
+}
+{
+        "_id" : ObjectId("61264f82ba6e648d35cc32ff"),
+        "movie_name" : "Drishyam",
+        "actor_name" : "Ajay devgan",
+        "actress_name" : "Tabu",
+        "release_data" : "2015-08-14",
+        "director_name" : "Nishikant Kamat"
+}
+{
+        "_id" : ObjectId("61264f82ba6e648d35cc3300"),
+        "movie_name" : "Shershah",
+        "actor_name" : "Sidhart Malhotra",
+        "actress_name" : "Kiara Advani",
+        "release_data" : "2021-08-12",
+        "director_name" : "Vishnuvardhan"
+}
+
+
+//This is to read document with actor_name 
+> db.moviedata.find({},{_id:0,actor_name:1})
+{ "actor_name" : "Manoj Bajpai" }
+{ "actor_name" : "Ajay devgan" }
+{ "actor_name" : "Sidhart Malhotra" }
+
+//This is to read document with actor_name and movie_name
+> db.moviedata.find({},{_id:0,actor_name:1, movie_name:1})
+{ "movie_name" : "Family Man", "actor_name" : "Manoj Bajpai" }
+{ "movie_name" : "Drishyam", "actor_name" : "Ajay devgan" }
+{ "movie_name" : "Shershah", "actor_name" : "Sidhart Malhotra" }
